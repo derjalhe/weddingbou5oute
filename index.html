@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
 <!-- Fonts: Great Vibes (script) · Playfair Display (serif) · Montserrat (sans) · Amiri + Reem Kufi (Arabic) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&family=Reem+Kufi:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@400;500;600&family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Reem+Kufi:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -31,7 +31,7 @@
   --sans:'Montserrat',sans-serif;
 }
 html[lang="ar"]{
-  --script:'Amiri',serif;
+  --script:'Aref Ruqaa',serif;
   --serif:'Amiri',serif;
   --sans:'Reem Kufi',sans-serif;
 }
@@ -302,7 +302,7 @@ section{
   border:1px solid var(--rose);border-radius:50%;opacity:.5;
 }
 .invite-monogram span{
-  font-family:'Amiri',serif;font-weight:700;
+  font-family:'Aref Ruqaa',serif;font-weight:700;
   font-size:2.5rem;line-height:1;color:var(--rose);
 }
 .invite-monogram .im-sep{
@@ -410,7 +410,7 @@ footer{
       <div class="env-bottom-fold"></div>
     </div>
     <div class="env-flap"></div>
-    <button class="seal" id="seal" aria-label="Open invitation"><span id="seal-initials">ف &amp; م</span></button>
+    <button class="seal" id="seal" aria-label="Open invitation"><span id="seal-initials">M &amp; F</span></button>
 
     <svg class="env-floral tr" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <g fill="none">
@@ -513,7 +513,7 @@ footer{
        Nothing below the I18N block needs to be touched.
    ══════════════════════════════════════════════════════════════ */
 const CONFIG = {
-  initials: "ف & م",
+  initials: "M & F",
 
   // ── MEDIA ── paste direct URLs (Cloudinary / Imgur / your host).
   // If heroVideoUrl is empty, heroImageUrl is used. If both empty, a soft gradient shows.
@@ -530,7 +530,7 @@ const CONFIG = {
   mapsEmbedUrl: "https://www.google.com/maps?q=" + encodeURIComponent("قاعة اللؤلؤة، نواكشوط الغربية، موريتانيا") + "&output=embed",
   mapsDirectionsUrl: "https://maps.app.goo.gl/pC92BtcEi1pUzun86",
 
-  defaultLang: "ar"                       // "fr" | "en" | "ar"
+  defaultLang: "fr"                       // "fr" | "en" | "ar"
 };
 
 /* ── ALL TEXT, IN 3 LANGUAGES ─────────────────────────────────── */
