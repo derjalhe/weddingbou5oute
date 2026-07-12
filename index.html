@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alex & Diane — Wedding Invitation</title>
+<title>Mouhamed Lemine & Fatimetou — Wedding Invitation</title>
 
 <!-- Fonts: Great Vibes (script) · Playfair Display (serif) · Montserrat (sans) · Amiri + Reem Kufi (Arabic) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,6 +22,10 @@
   --charcoal:#3d3a36;
   --gray:#8a857d;
   --line:#e6dfd0;
+  --gold:#c8a13b;
+  --gold-dark:#8a6a1e;
+  --paper:#fffdf9;
+  --paper-shade:#efe6ce;
   --script:'Great Vibes',cursive;
   --serif:'Playfair Display',serif;
   --sans:'Montserrat',sans-serif;
@@ -45,81 +49,136 @@ body.opened{overflow:auto}
 /* ═══════════════════ 1. ENVELOPE ═══════════════════ */
 #envelope{
   position:fixed;inset:0;z-index:100;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
-  background-color:var(--sage);
-  background-image:
-    radial-gradient(circle at 50% 40%, rgba(255,255,255,.14), transparent 60%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%23849878' stroke-width='1.2' opacity='.55'%3E%3Cpath d='M70 18 C82 34 82 50 70 64 C58 50 58 34 70 18 Z'/%3E%3Cpath d='M70 76 C82 92 82 108 70 122 C58 108 58 92 70 76 Z'/%3E%3Cpath d='M18 70 C34 58 50 58 64 70 C50 82 34 82 18 70 Z'/%3E%3Cpath d='M76 70 C92 58 108 58 122 70 C108 82 92 82 76 70 Z'/%3E%3Ccircle cx='70' cy='70' r='5'/%3E%3Ccircle cx='0' cy='0' r='12'/%3E%3Ccircle cx='140' cy='0' r='12'/%3E%3Ccircle cx='0' cy='140' r='12'/%3E%3Ccircle cx='140' cy='140' r='12'/%3E%3C/g%3E%3C/svg%3E");
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;
+  background:
+    radial-gradient(circle at 12% 88%, rgba(159,176,142,.38), transparent 55%),
+    radial-gradient(circle at 88% 8%, rgba(159,176,142,.3), transparent 50%),
+    radial-gradient(circle at 50% 45%, #fffefb, #f7f2e4 75%);
   transition:opacity 1s ease .9s, visibility 0s linear 1.9s;
-  perspective:1200px;
+  perspective:1400px;
+  overflow:hidden;
+  padding:20px;
 }
 body.opened #envelope{opacity:0;visibility:hidden}
 
-/* envelope flap */
-.env-flap{
-  position:absolute;top:0;left:0;right:0;height:52vh;
-  background:linear-gradient(180deg,var(--sage-dark),#8ea27e);
-  clip-path:polygon(0 0,100% 0,50% 96%);
-  transform-origin:top center;
-  transition:transform 1.4s cubic-bezier(.55,.06,.35,1);
-  box-shadow:0 12px 30px rgba(40,50,30,.25);
-  z-index:1;
-}
-.env-flap::after{
-  content:'';position:absolute;inset:0;
-  clip-path:polygon(0 0,100% 0,50% 96%);
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%23768a68' stroke-width='1.2' opacity='.5'%3E%3Cpath d='M70 18 C82 34 82 50 70 64 C58 50 58 34 70 18 Z'/%3E%3Cpath d='M70 76 C82 92 82 108 70 122 C58 108 58 92 70 76 Z'/%3E%3Cpath d='M18 70 C34 58 50 58 64 70 C50 82 34 82 18 70 Z'/%3E%3Cpath d='M76 70 C92 58 108 58 122 70 C108 82 92 82 76 70 Z'/%3E%3Ccircle cx='70' cy='70' r='5'/%3E%3C/g%3E%3C/svg%3E");
-}
-body.opening .env-flap{transform:rotateX(-168deg)}
-
-/* wax seal */
-.seal{
-  position:relative;z-index:3;
-  width:112px;height:112px;
-  border-radius:47% 53% 51% 49% / 52% 48% 53% 47%;
-  background:radial-gradient(circle at 36% 30%, #c4525f, var(--crimson) 58%, #5c1b25 100%);
-  box-shadow:
-    0 10px 26px rgba(60,15,22,.5),
-    inset 0 3px 6px rgba(255,190,190,.35),
-    inset 0 -5px 10px rgba(40,8,12,.55);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;
-  animation:sealPulse 2.6s ease-in-out infinite;
-  transition:transform .9s ease, opacity .9s ease;
-  border:none;
-}
-.seal::before{
-  content:'';position:absolute;inset:12px;
-  border-radius:50%;
-  border:1.5px solid rgba(255,215,215,.4);
-}
-.seal span{
-  font-family:var(--serif);
-  font-size:1.7rem;font-style:italic;
-  color:#f3d9d2;
-  text-shadow:0 2px 3px rgba(50,10,15,.6);
-}
-@keyframes sealPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-body.opening .seal{transform:scale(.4) rotate(25deg);opacity:0;animation:none}
-
 .env-invited{
-  position:relative;z-index:3;
+  position:relative;z-index:2;
   font-family:var(--script);
-  font-size:clamp(2.2rem,7vw,3.2rem);
-  color:#fdfaf0;
-  text-shadow:0 2px 10px rgba(50,65,40,.4);
-  transition:opacity .7s;
+  font-size:clamp(2.1rem,7vw,3rem);
+  color:var(--charcoal);
+  text-align:center;
+  padding:0 20px;
+  transition:opacity .6s ease, transform .6s ease;
 }
 .env-hint{
-  position:relative;z-index:3;
-  font-family:var(--sans);font-size:.78rem;letter-spacing:2px;text-transform:uppercase;
-  color:rgba(253,250,240,.85);
+  position:relative;z-index:2;
+  font-family:var(--sans);font-size:.74rem;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gray);
   animation:hintBlink 2.4s ease-in-out infinite;
   transition:opacity .5s;
 }
-@keyframes hintBlink{0%,100%{opacity:.5}50%{opacity:1}}
+@keyframes hintBlink{0%,100%{opacity:.45}50%{opacity:1}}
 body.opening .env-invited, body.opening .env-hint{opacity:0}
+
+/* ── the physical envelope ── */
+.envelope{
+  position:relative;z-index:2;
+  width:min(76vw,280px);
+  aspect-ratio:3/2;
+  transition:transform .8s ease .1s;
+  transform-style:preserve-3d;
+}
+body.opening .envelope{transform:translateY(14px) scale(.95)}
+
+.env-shadow{
+  position:absolute;left:6%;right:6%;bottom:-16px;height:24px;z-index:0;
+  background:radial-gradient(ellipse,rgba(60,55,35,.32),transparent 72%);
+  filter:blur(4px);
+}
+
+/* soft foliage sprays peeking from behind the envelope */
+.env-floral{
+  position:absolute;z-index:0;width:150px;height:150px;
+  pointer-events:none;opacity:.95;
+  transition:opacity .6s ease;
+}
+.env-floral.bl{left:-46px;bottom:-46px;transform:rotate(-6deg)}
+.env-floral.tr{right:-46px;top:-56px;transform:rotate(174deg)}
+body.opening .env-floral{opacity:0}
+
+/* envelope body (back + visible inner fold seams) */
+.env-body{
+  position:absolute;inset:0;z-index:2;
+  border-radius:3px;
+  background:linear-gradient(160deg,var(--paper),var(--paper-shade) 130%);
+  box-shadow:
+    0 20px 44px rgba(70,58,35,.24),
+    inset 0 2px 0 rgba(255,255,255,.6),
+    inset 0 0 0 1px rgba(184,162,110,.3);
+  overflow:hidden;
+}
+.env-body::before{ /* left inner fold seam */
+  content:'';position:absolute;inset:0;
+  clip-path:polygon(0 0,0 100%,50% 55%);
+  background:linear-gradient(115deg,rgba(203,183,132,.4),rgba(203,183,132,0) 65%);
+}
+.env-body::after{ /* right inner fold seam */
+  content:'';position:absolute;inset:0;
+  clip-path:polygon(100% 0,100% 100%,50% 55%);
+  background:linear-gradient(245deg,rgba(203,183,132,.4),rgba(203,183,132,0) 65%);
+}
+.env-bottom-fold{ /* bottom inner fold seam */
+  position:absolute;inset:0;
+  clip-path:polygon(0 100%,100% 100%,50% 52%);
+  background:linear-gradient(0deg,rgba(216,197,150,.45),transparent 68%);
+}
+
+/* folded top flap */
+.env-flap{
+  position:absolute;top:0;left:0;right:0;height:60%;z-index:3;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  background:linear-gradient(165deg,var(--paper),var(--paper-shade) 135%);
+  transform-origin:top center;
+  transition:transform 1.3s cubic-bezier(.6,.05,.3,1);
+  box-shadow:0 8px 16px rgba(70,58,30,.14);
+}
+.env-flap::after{ /* fold crease shading */
+  content:'';position:absolute;inset:0;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  background:linear-gradient(180deg,transparent 55%,rgba(170,148,95,.28) 100%);
+}
+body.opening .env-flap{transform:rotateX(-178deg)}
+
+/* wax seal */
+.seal{
+  position:absolute;left:50%;top:53%;z-index:4;
+  transform:translate(-50%,-50%);
+  width:22%;aspect-ratio:1;
+  border-radius:47% 53% 51% 49% / 52% 48% 53% 47%;
+  background:radial-gradient(circle at 34% 28%, #f6e3a8, var(--gold) 55%, var(--gold-dark) 100%);
+  box-shadow:
+    0 8px 16px rgba(110,80,20,.4),
+    inset 0 2px 4px rgba(255,240,205,.55),
+    inset 0 -4px 7px rgba(90,60,10,.4);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  animation:sealPulse 2.6s ease-in-out infinite;
+  transition:transform .8s ease, opacity .8s ease;
+  border:none;
+}
+.seal::before{
+  content:'';position:absolute;inset:14%;
+  border-radius:50%;
+  border:1px solid rgba(255,240,205,.5);
+}
+.seal span{
+  font-family:var(--serif);
+  font-size:clamp(.85rem,2.6vw,1.2rem);font-style:italic;
+  color:#5c3d10;
+  text-shadow:0 1px 1px rgba(255,240,210,.5);
+}
+@keyframes sealPulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.06)}}
+body.opening .seal{transform:translate(-50%,-50%) scale(.3) rotate(18deg);opacity:0;animation:none}
 
 /* ═══════════════════ language toggle ═══════════════════ */
 #lang-toggle{
@@ -224,38 +283,61 @@ section{
 .fade{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s ease}
 .fade.visible{opacity:1;transform:translateY(0)}
 
-/* our story timeline */
-.timeline{text-align:start;position:relative;padding-inline-start:34px}
-.timeline::before{
-  content:'';position:absolute;inset-block:6px;inset-inline-start:9px;
-  width:1px;background:var(--line);
+/* invitation poem */
+.invite-poem{
+  font-family:var(--serif);font-style:italic;
+  font-size:1.05rem;line-height:2.15;
+  color:var(--charcoal);
+  margin-bottom:36px;
 }
-.tl-item{position:relative;margin-bottom:34px}
-.tl-item::before{
-  content:'';position:absolute;inset-inline-start:-31px;top:6px;
-  width:11px;height:11px;border-radius:50%;
-  background:var(--rose);
-  box-shadow:0 0 0 4px var(--ivory),0 0 0 5px var(--rose);
+.invite-poem p{margin:0}
+.invite-monogram{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  width:140px;height:140px;margin:0 auto 32px;
+  border-radius:50%;border:1.5px solid var(--rose);
+  position:relative;
 }
-.tl-year{font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--charcoal)}
-.tl-text{font-size:.92rem;line-height:1.8;color:var(--gray);margin-top:6px}
+.invite-monogram::before{
+  content:'';position:absolute;inset:8px;
+  border:1px solid var(--rose);border-radius:50%;opacity:.5;
+}
+.invite-monogram span{
+  font-family:'Amiri',serif;font-weight:700;
+  font-size:2.5rem;line-height:1;color:var(--rose);
+}
+.invite-monogram .im-sep{
+  width:5px;height:5px;border:1px solid var(--rose);
+  background:var(--ivory);transform:rotate(45deg);
+}
+.invite-couple{
+  font-family:var(--script);font-weight:400;
+  font-size:clamp(2rem,6vw,2.6rem);
+  color:var(--charcoal);margin-bottom:6px;
+}
+.invite-date{
+  font-family:var(--serif);font-style:italic;
+  font-size:1rem;color:var(--gray);
+  letter-spacing:1px;margin-bottom:34px;
+}
+.invite-closing{
+  font-family:var(--serif);font-style:italic;
+  font-size:.95rem;line-height:2;color:var(--gray);
+}
+.invite-closing p{margin:0}
 
-/* day program */
-.program{text-align:start;display:flex;flex-direction:column;gap:4px}
-.pg-row{
-  display:flex;align-items:center;gap:16px;
-  padding:14px 6px;border-bottom:1px solid var(--line);
+/* wedding date */
+.wedding-date-big{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(1.2rem,4vw,1.5rem);color:var(--charcoal);
 }
-.pg-row:last-child{border-bottom:none}
-.pg-time{
-  font-weight:600;font-size:.95rem;color:var(--rose);
-  min-width:58px;
-}
-.pg-icon{font-size:1.15rem}
-.pg-text{font-size:.95rem;color:var(--charcoal)}
 
-/* gifts */
-.gifts-text{font-size:.95rem;line-height:1.9;color:var(--gray);max-width:480px;margin:0 auto 24px}
+/* closing greeting */
+.greet-text{
+  font-family:var(--serif);font-style:italic;
+  font-size:1.2rem;line-height:1.9;color:var(--charcoal);
+  max-width:480px;margin:0 auto;
+}
+
 .btn{
   display:inline-block;
   background:var(--rose);color:#fff;
@@ -283,65 +365,6 @@ section{
 .map-wrap iframe{display:block;width:100%;height:300px;border:0}
 .detail-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
-/* gallery */
-.gallery{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.g-slot{
-  width:150px;height:200px;border-radius:80px 80px 8px 8px;
-  overflow:hidden;position:relative;
-  background:var(--cream);
-  border:1px solid var(--line);
-  box-shadow:0 10px 24px rgba(60,55,45,.12);
-}
-.g-slot img{width:100%;height:100%;object-fit:cover;position:relative;z-index:2}
-.g-slot .g-ph{
-  position:absolute;inset:0;display:flex;flex-direction:column;gap:8px;
-  align-items:center;justify-content:center;
-  color:var(--gray);font-size:.68rem;letter-spacing:1px;padding:10px;text-align:center;
-}
-.g-slot .g-ph::before{content:'✧';font-size:1.5rem;color:var(--rose)}
-
-/* dress code */
-.dress-text{
-  font-family:var(--serif);font-style:italic;
-  font-size:1.2rem;color:var(--charcoal);
-}
-.dress-note{font-size:.88rem;color:var(--gray);margin-top:8px}
-
-/* RSVP */
-#rsvp-form{
-  text-align:start;max-width:440px;margin:0 auto;
-  display:flex;flex-direction:column;gap:18px;
-}
-.field label{
-  display:block;font-size:.72rem;font-weight:600;letter-spacing:1.5px;
-  text-transform:uppercase;color:var(--gray);margin-bottom:7px;
-}
-.field input{
-  width:100%;
-  font-family:var(--sans);font-size:.95rem;color:var(--charcoal);
-  background:#fff;
-  border:1px solid var(--line);border-radius:6px;
-  padding:13px 15px;
-  outline:none;transition:border-color .3s;
-}
-.field input:focus{border-color:var(--rose)}
-.attend{display:flex;gap:10px;flex-wrap:wrap}
-.attend label{
-  flex:1;min-width:150px;
-  border:1.5px solid var(--line);border-radius:40px;
-  padding:12px 10px;text-align:center;
-  font-size:.85rem;cursor:pointer;
-  transition:all .3s;user-select:none;
-}
-.attend input{display:none}
-.attend input:checked + span{color:#fff}
-.attend label:has(input:checked){background:var(--rose);border-color:var(--rose);color:#fff}
-#rsvp-thanks{
-  display:none;
-  font-family:var(--serif);font-style:italic;font-size:1.15rem;
-  color:var(--rose);padding:30px 0;
-}
-
 footer{
   margin-top:70px;padding:44px 20px 54px;
   background:var(--cream);
@@ -352,7 +375,6 @@ footer{
 
 @media (max-width:420px){
   .hero-card{padding:36px 22px 30px}
-  .g-slot{width:44%;height:170px}
 }
 </style>
 </head>
@@ -360,10 +382,57 @@ footer{
 
 <!-- ═══════════════ ENVELOPE (landing) ═══════════════ -->
 <div id="envelope">
-  <div class="env-flap"></div>
-  <button class="seal" id="seal" aria-label="Open invitation"><span id="seal-initials">A &amp; D</span></button>
-  <div class="env-invited" data-i18n="invited">You are invited</div>
-  <div class="env-hint" data-i18n="open">Click the seal to open</div>
+  <div class="env-invited">Vous êtes invités</div>
+
+  <div class="envelope">
+    <div class="env-shadow"></div>
+
+    <svg class="env-floral bl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none">
+        <path d="M100 195 C 92 150, 68 118, 34 88" stroke="#9fb08e" stroke-width="2" opacity=".65" stroke-linecap="round"/>
+        <ellipse cx="88" cy="158" rx="15" ry="7" fill="#b7c7a3" transform="rotate(-32 88 158)"/>
+        <ellipse cx="72" cy="136" rx="17" ry="8" fill="#9fb08e" transform="rotate(-48 72 136)"/>
+        <ellipse cx="56" cy="112" rx="16" ry="7" fill="#b7c7a3" transform="rotate(-58 56 112)"/>
+        <ellipse cx="44" cy="88" rx="14" ry="6" fill="#9fb08e" transform="rotate(-66 44 88)"/>
+        <ellipse cx="112" cy="172" rx="13" ry="6" fill="#c7d4b4" transform="rotate(24 112 172)"/>
+        <ellipse cx="122" cy="148" rx="14" ry="7" fill="#b7c7a3" transform="rotate(38 122 148)"/>
+        <g transform="translate(42,66)">
+          <circle r="17" fill="#fdfbf4"/>
+          <path d="M0,-15 A15,15 0 0 1 13,7 A11,11 0 0 1 -11,6 A8,8 0 0 1 0,-8 Z" fill="#f4eddf" stroke="#e6dcc4" stroke-width=".7"/>
+          <circle r="5.5" fill="#efe4cc"/>
+        </g>
+        <circle cx="118" cy="122" r="6.5" fill="#fdfbf4" stroke="#e6dcc4" stroke-width=".7"/>
+        <circle cx="132" cy="160" r="4.5" fill="#fdfbf4" stroke="#e6dcc4" stroke-width=".7"/>
+      </g>
+    </svg>
+
+    <div class="env-body">
+      <div class="env-bottom-fold"></div>
+    </div>
+    <div class="env-flap"></div>
+    <button class="seal" id="seal" aria-label="Open invitation"><span id="seal-initials">ف &amp; م</span></button>
+
+    <svg class="env-floral tr" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none">
+        <path d="M100 195 C 92 150, 68 118, 34 88" stroke="#9fb08e" stroke-width="2" opacity=".65" stroke-linecap="round"/>
+        <ellipse cx="88" cy="158" rx="15" ry="7" fill="#b7c7a3" transform="rotate(-32 88 158)"/>
+        <ellipse cx="72" cy="136" rx="17" ry="8" fill="#9fb08e" transform="rotate(-48 72 136)"/>
+        <ellipse cx="56" cy="112" rx="16" ry="7" fill="#b7c7a3" transform="rotate(-58 56 112)"/>
+        <ellipse cx="44" cy="88" rx="14" ry="6" fill="#9fb08e" transform="rotate(-66 44 88)"/>
+        <ellipse cx="112" cy="172" rx="13" ry="6" fill="#c7d4b4" transform="rotate(24 112 172)"/>
+        <ellipse cx="122" cy="148" rx="14" ry="7" fill="#b7c7a3" transform="rotate(38 122 148)"/>
+        <g transform="translate(42,66)">
+          <circle r="17" fill="#fdfbf4"/>
+          <path d="M0,-15 A15,15 0 0 1 13,7 A11,11 0 0 1 -11,6 A8,8 0 0 1 0,-8 Z" fill="#f4eddf" stroke="#e6dcc4" stroke-width=".7"/>
+          <circle r="5.5" fill="#efe4cc"/>
+        </g>
+        <circle cx="118" cy="122" r="6.5" fill="#fdfbf4" stroke="#e6dcc4" stroke-width=".7"/>
+        <circle cx="132" cy="160" r="4.5" fill="#fdfbf4" stroke="#e6dcc4" stroke-width=".7"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="env-hint">Cliquez sur le sceau pour ouvrir</div>
 </div>
 
 <!-- language toggle -->
@@ -379,7 +448,7 @@ footer{
   <div class="veil"></div>
   <div class="hero-card">
     <div class="hero-sub" data-i18n="subtitle">Nous nous marions</div>
-    <h1 class="hero-names" id="hero-names">Alex &amp; Diane</h1>
+    <h1 class="hero-names" id="hero-names">Mouhamed Lemine &amp; Fatimetou</h1>
     <div class="hero-date" data-i18n="dateText">Jeudi 10 septembre 2026 · 17h00</div>
     <div class="hero-sep"></div>
     <div class="countdown">
@@ -393,26 +462,22 @@ footer{
 </header>
 
 <main>
-  <!-- ═══ Our Story ═══ -->
+  <!-- ═══ Invitation ═══ -->
   <section class="fade">
-    <h2 class="sec-title" data-i18n="storyTitle">Notre Histoire</h2>
-    <div class="sec-orn"></div>
-    <div class="timeline" id="timeline"></div>
+    <div class="invite-poem" id="invite-poem"></div>
+    <div class="invite-monogram" aria-hidden="true">
+      <span>ف</span><i class="im-sep"></i><span>م</span>
+    </div>
+    <div class="invite-couple" id="invite-couple"></div>
+    <div class="invite-date">27.07.2026</div>
+    <div class="invite-closing" id="invite-closing"></div>
   </section>
 
-  <!-- ═══ Day Program ═══ -->
+  <!-- ═══ Wedding Date ═══ -->
   <section class="fade">
-    <h2 class="sec-title" data-i18n="programTitle">Programme du jour</h2>
+    <h2 class="sec-title" data-i18n="dateTitle">Le Jour J</h2>
     <div class="sec-orn"></div>
-    <div class="program" id="program"></div>
-  </section>
-
-  <!-- ═══ Gifts ═══ -->
-  <section class="fade">
-    <h2 class="sec-title" data-i18n="giftsTitle">Cadeaux</h2>
-    <div class="sec-orn"></div>
-    <p class="gifts-text" data-i18n="giftsText"></p>
-    <a class="btn ghost" id="gift-link" href="#" target="_blank" rel="noopener" data-i18n="giftsBtn"></a>
+    <div class="wedding-date-big" id="wedding-date-big"></div>
   </section>
 
   <!-- ═══ Event Details & Map ═══ -->
@@ -430,46 +495,15 @@ footer{
     </div>
   </section>
 
-  <!-- ═══ Gallery ═══ -->
+  <!-- ═══ Greeting ═══ -->
   <section class="fade">
-    <h2 class="sec-title" data-i18n="galleryTitle">Nos moments</h2>
-    <div class="sec-orn"></div>
-    <div class="gallery" id="gallery"></div>
+    <div class="greet-text" id="greet-text"></div>
   </section>
 
-  <!-- ═══ Dress Code ═══ -->
-  <section class="fade">
-    <h2 class="sec-title" data-i18n="dressTitle">Code vestimentaire</h2>
-    <div class="sec-orn"></div>
-    <p class="dress-text" data-i18n="dressText"></p>
-    <p class="dress-note" data-i18n="dressNote"></p>
-  </section>
-
-  <!-- ═══ RSVP ═══ -->
-  <section class="fade">
-    <h2 class="sec-title" data-i18n="rsvpTitle">RSVP</h2>
-    <div class="sec-orn"></div>
-    <form id="rsvp-form">
-      <div class="field">
-        <label for="rsvp-name" data-i18n="rsvpName">Nom complet</label>
-        <input id="rsvp-name" name="name" type="text" required>
-      </div>
-      <div class="field">
-        <label for="rsvp-email" data-i18n="rsvpEmail">Adresse e-mail</label>
-        <input id="rsvp-email" name="email" type="email" required>
-      </div>
-      <div class="attend">
-        <label><input type="radio" name="attendance" value="yes" required><span data-i18n="rsvpYes"></span></label>
-        <label><input type="radio" name="attendance" value="no"><span data-i18n="rsvpNo"></span></label>
-      </div>
-      <button class="btn" type="submit" data-i18n="rsvpSend"></button>
-    </form>
-    <div id="rsvp-thanks" data-i18n="rsvpThanks"></div>
-  </section>
 </main>
 
 <footer>
-  <div class="footer-names" id="footer-names">Alex &amp; Diane</div>
+  <div class="footer-names" id="footer-names">Mouhamed Lemine &amp; Fatimetou</div>
   <div class="footer-note" data-i18n="footer"></div>
 </footer>
 
@@ -479,155 +513,98 @@ footer{
        Nothing below the I18N block needs to be touched.
    ══════════════════════════════════════════════════════════════ */
 const CONFIG = {
-  initials: "A & D",
+  initials: "ف & م",
 
   // ── MEDIA ── paste direct URLs (Cloudinary / Imgur / your host).
   // If heroVideoUrl is empty, heroImageUrl is used. If both empty, a soft gradient shows.
-  heroVideoUrl: "",                       // e.g. "https://res.cloudinary.com/.../wedding.mp4"
+  heroVideoUrl: "media/Screen_Recording_20260712_141241_YouTube.mp4", // local file in /media, served relative to index.html
   heroImageUrl: "",                       // e.g. "https://i.imgur.com/xxxx.jpg"
-  galleryImages: ["", "", ""],            // 3 photo URLs (leave "" to show placeholder)
 
   // ── DATE (for the live countdown + calendar button) ──
-  weddingDateISO: "2026-09-10T17:00:00",
-  weddingEndISO:  "2026-09-11T00:00:00",
+  weddingDateISO: "2026-07-27T20:00:00",
+  weddingEndISO:  "2026-07-28T02:00:00",
 
-  // ── VENUE ──
-  venueName: "Villa Esperanza",
-  venueAddress: "123 Garden Road, City, Country",
-  // Google Maps → Share → "Embed a map" → copy the src="..." URL and paste it here:
-  mapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8!2d144.95!3d-37.81!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1614000000000",
-  mapsDirectionsUrl: "https://maps.google.com/?q=Villa+Esperanza",
+  // ── VENUE ── (display name/address are per-language in I18N below; this is only used to locate the map pin)
+  // built from the venue name/address below (no API key needed). For a nicer embed later:
+  // Google Maps → Share → "Embed a map" → copy the src="..." URL and paste it here instead.
+  mapsEmbedUrl: "https://www.google.com/maps?q=" + encodeURIComponent("قاعة اللؤلؤة، نواكشوط الغربية، موريتانيا") + "&output=embed",
+  mapsDirectionsUrl: "https://maps.app.goo.gl/pC92BtcEi1pUzun86",
 
-  // ── LINKS ──
-  giftRegistryUrl: "#",                   // your gift list URL
-  rsvpAction: "",                         // optional: Formspree endpoint e.g. "https://formspree.io/f/abcd1234"
-
-  defaultLang: "fr"                       // "fr" | "en" | "ar"
+  defaultLang: "ar"                       // "fr" | "en" | "ar"
 };
 
 /* ── ALL TEXT, IN 3 LANGUAGES ─────────────────────────────────── */
 const I18N = {
   fr: {
-    invited: "Vous êtes invités",
-    open: "Cliquez sur le sceau pour ouvrir",
-    names: "Alex & Diane",
+    names: "Mouhamed Lemine & Fatimetou",
     subtitle: "Nous nous marions",
-    dateText: "Jeudi 10 septembre 2026 · 17h00",
+    dateText: "Lundi 27 juillet 2026 · 20h00",
     cd: ["Jours","Heures","Minutes","Secondes"],
-    storyTitle: "Notre Histoire",
-    story: [
-      { year:"2020", text:"[Remplacez ce texte : votre rencontre — où et comment tout a commencé.]" },
-      { year:"2021", text:"[Remplacez ce texte : un moment marquant de votre histoire.]" },
-      { year:"2023", text:"[Remplacez ce texte : la demande en mariage.]" }
+    invitePoem: [
+      "Qu'Allah les bénisse tous deux et les réunisse dans le bien et la joie.",
+      "La joie partagée est une joie doublée,",
+      "entourés des sourires de leurs proches,",
+      "nous sommes honorés de vous inviter à assister à la cérémonie de mariage de"
     ],
-    programTitle: "Programme du jour",
-    program: [
-      { time:"16:30", icon:"🌿", text:"Arrivée des invités" },
-      { time:"17:00", icon:"💍", text:"Cérémonie" },
-      { time:"18:00", icon:"🥂", text:"Cocktail" },
-      { time:"20:00", icon:"🍽️", text:"Dîner" },
-      { time:"22:00", icon:"💃", text:"Soirée dansante" }
+    inviteClosing: [
+      "Et cela, par la volonté d'Allah,",
+      "Qu'Allah leur accorde une vie heureuse et longue."
     ],
-    giftsTitle: "Cadeaux",
-    giftsText: "Votre présence est le plus beau des cadeaux. Si vous souhaitez néanmoins nous gâter, une liste est à votre disposition.",
-    giftsBtn: "Voir la liste de mariage",
+    dateTitle: "Le Jour J",
     detailsTitle: "Détails de l'événement",
+    venueName: "Salle Al-Louloua",
+    venueAddress: "Nouakchott-Ouest, Mauritanie",
     directions: "Itinéraire",
     calendar: "Ajouter au calendrier",
-    galleryTitle: "Nos moments",
-    galleryPh: "Collez l'URL de votre photo dans CONFIG.galleryImages",
-    dressTitle: "Code vestimentaire",
-    dressText: "Formel / Black Tie optionnel",
-    dressNote: "[Note facultative : couleurs à privilégier ou à éviter.]",
-    rsvpTitle: "Confirmez votre présence",
-    rsvpName: "Nom complet",
-    rsvpEmail: "Adresse e-mail",
-    rsvpYes: "Je serai présent(e)",
-    rsvpNo: "Je ne pourrai pas venir",
-    rsvpSend: "Envoyer",
-    rsvpThanks: "Merci ! Votre réponse a bien été envoyée ♥",
+    greet: "Votre présence comblera notre joie et notre bonheur.",
     footer: "Avec tout notre amour"
   },
   en: {
-    invited: "You are invited",
-    open: "Click the seal to open",
-    names: "Alex & Diane",
+    names: "Mouhamed Lemine & Fatimetou",
     subtitle: "We are getting married",
-    dateText: "Thursday, September 10, 2026 · 5:00 PM",
+    dateText: "Monday, July 27, 2026 · 8:00 PM",
     cd: ["Days","Hours","Minutes","Seconds"],
-    storyTitle: "Our Story",
-    story: [
-      { year:"2020", text:"[Replace this text: how you first met.]" },
-      { year:"2021", text:"[Replace this text: a milestone in your journey.]" },
-      { year:"2023", text:"[Replace this text: the proposal.]" }
+    invitePoem: [
+      "O Allah, bless them both and unite them in goodness and joy.",
+      "Joy shared is joy doubled,",
+      "amidst the smiles of loved ones,",
+      "we are honored to invite you to attend the wedding ceremony of"
     ],
-    programTitle: "Day Program",
-    program: [
-      { time:"16:30", icon:"🌿", text:"Guests arrival" },
-      { time:"17:00", icon:"💍", text:"Ceremony" },
-      { time:"18:00", icon:"🥂", text:"Cocktail" },
-      { time:"20:00", icon:"🍽️", text:"Dinner" },
-      { time:"22:00", icon:"💃", text:"Dance party" }
+    inviteClosing: [
+      "By Allah's will,",
+      "May Allah grant them a long and happy life."
     ],
-    giftsTitle: "Gifts",
-    giftsText: "Your presence is the greatest gift of all. Should you wish to spoil us anyway, a registry is available.",
-    giftsBtn: "View gift registry",
+    dateTitle: "The Big Day",
     detailsTitle: "Event Details",
+    venueName: "Al-Louloua Hall",
+    venueAddress: "Nouakchott West, Mauritania",
     directions: "Get directions",
     calendar: "Add to calendar",
-    galleryTitle: "Our Moments",
-    galleryPh: "Paste your photo URL in CONFIG.galleryImages",
-    dressTitle: "Dress Code",
-    dressText: "Formal / Black Tie optional",
-    dressNote: "[Optional note: preferred or discouraged colors.]",
-    rsvpTitle: "RSVP",
-    rsvpName: "Full name",
-    rsvpEmail: "Email address",
-    rsvpYes: "I will attend",
-    rsvpNo: "I can't make it",
-    rsvpSend: "Send",
-    rsvpThanks: "Thank you! Your response has been sent ♥",
+    greet: "Your presence will complete our joy and happiness.",
     footer: "With all our love"
   },
   ar: {
-    invited: "أنتم مدعوون",
-    open: "اضغط على الختم لفتح الدعوة",
-    names: "أليكس وديان",
+    names: "محمد لمين & فاطمة",
     subtitle: "سنتزوج",
-    dateText: "الخميس ١٠ سبتمبر ٢٠٢٦ · الساعة الخامسة مساءً",
+    dateText: "الاثنين ٢٧ يوليو ٢٠٢٦ · الساعة الثامنة مساءً",
     cd: ["يوم","ساعة","دقيقة","ثانية"],
-    storyTitle: "قصتنا",
-    story: [
-      { year:"2020", text:"[استبدل هذا النص: كيف بدأت قصتكما.]" },
-      { year:"2021", text:"[استبدل هذا النص: لحظة مميزة في مشواركما.]" },
-      { year:"2023", text:"[استبدل هذا النص: لحظة طلب الزواج.]" }
+    invitePoem: [
+      "اللهم بارك لهما وعليهما واجمع بينهما بالخير و المسره",
+      "ان السرور اذا تشارك تضاعفت",
+      "بسماته مع زمرة الأحباب",
+      "ناشرف بدعوتكم لحضور حفل زفاف"
     ],
-    programTitle: "برنامج اليوم",
-    program: [
-      { time:"16:30", icon:"🌿", text:"وصول الضيوف" },
-      { time:"17:00", icon:"💍", text:"مراسم الزفاف" },
-      { time:"18:00", icon:"🥂", text:"حفل الاستقبال" },
-      { time:"20:00", icon:"🍽️", text:"العشاء" },
-      { time:"22:00", icon:"💃", text:"السهرة" }
+    inviteClosing: [
+      "و ذلك بمشيئة الله",
+      "اللهم اجعلها حياة سعيده مديده"
     ],
-    giftsTitle: "الهدايا",
-    giftsText: "حضوركم هو أجمل هدية. وإن رغبتم في إسعادنا أكثر، قائمة الهدايا متاحة لكم.",
-    giftsBtn: "قائمة الهدايا",
+    dateTitle: "يوم الزفاف",
     detailsTitle: "تفاصيل الحفل",
+    venueName: "قاعة اللؤلؤه",
+    venueAddress: "نواكشوط الغربية، موريتانيا",
     directions: "الاتجاهات",
     calendar: "أضف إلى التقويم",
-    galleryTitle: "لحظاتنا",
-    galleryPh: "ضع رابط صورتك في CONFIG.galleryImages",
-    dressTitle: "الزي المطلوب",
-    dressText: "رسمي / بدلة سهرة اختيارية",
-    dressNote: "[ملاحظة اختيارية: الألوان المفضلة أو المرغوب تجنبها.]",
-    rsvpTitle: "تأكيد الحضور",
-    rsvpName: "الاسم الكامل",
-    rsvpEmail: "البريد الإلكتروني",
-    rsvpYes: "سأحضر",
-    rsvpNo: "لن أتمكن من الحضور",
-    rsvpSend: "إرسال",
-    rsvpThanks: "شكراً لكم! تم إرسال ردكم ♥",
+    greet: "بحضوركم يتم لنا الفرح و السرور",
     footer: "مع كل حبنا"
   }
 };
@@ -648,20 +625,20 @@ function render(){
   document.getElementById('hero-names').textContent = t.names;
   document.getElementById('footer-names').textContent = t.names;
 
-  // story timeline
-  document.getElementById('timeline').innerHTML = t.story.map(s =>
-    `<div class="tl-item"><div class="tl-year">${s.year}</div><div class="tl-text">${s.text}</div></div>`
-  ).join('');
+  // invitation poem
+  document.getElementById('invite-poem').innerHTML = t.invitePoem.map(line => `<p>${line}</p>`).join('');
+  document.getElementById('invite-couple').textContent = t.names;
+  document.getElementById('invite-closing').innerHTML = t.inviteClosing.map(line => `<p>${line}</p>`).join('');
 
-  // day program
-  document.getElementById('program').innerHTML = t.program.map(p =>
-    `<div class="pg-row"><div class="pg-time">${p.time}</div><div class="pg-icon">${p.icon}</div><div class="pg-text">${p.text}</div></div>`
-  ).join('');
+  // wedding date
+  document.getElementById('wedding-date-big').textContent = t.dateText;
 
-  // gallery
-  document.getElementById('gallery').innerHTML = CONFIG.galleryImages.map(url =>
-    `<div class="g-slot"><div class="g-ph">${t.galleryPh}</div>${url ? `<img src="${url}" alt="" onerror="this.remove()">` : ''}</div>`
-  ).join('');
+  // venue (per-language name/address)
+  document.getElementById('venue-name').textContent = t.venueName;
+  document.getElementById('venue-addr').textContent = t.venueAddress;
+
+  // greeting
+  document.getElementById('greet-text').textContent = t.greet;
 
   // language toggle active state
   document.querySelectorAll('#lang-toggle button').forEach(b =>
@@ -675,11 +652,8 @@ document.querySelectorAll('#lang-toggle button').forEach(b =>
 
 /* ── static CONFIG bindings ── */
 document.getElementById('seal-initials').textContent = CONFIG.initials;
-document.getElementById('venue-name').textContent = CONFIG.venueName;
-document.getElementById('venue-addr').textContent = CONFIG.venueAddress;
 document.getElementById('map-frame').src = CONFIG.mapsEmbedUrl;
 document.getElementById('directions-link').href = CONFIG.mapsDirectionsUrl;
-document.getElementById('gift-link').href = CONFIG.giftRegistryUrl;
 
 /* ── hero media (video > image > gradient fallback) ── */
 (function(){
@@ -700,8 +674,9 @@ document.getElementById('gift-link').href = CONFIG.giftRegistryUrl;
 /* ── "Add to calendar" (Google Calendar link, built from CONFIG) ── */
 (function(){
   const fmt = iso => iso.replace(/[-:]/g,'').split('.')[0];
-  const title = encodeURIComponent('Wedding — ' + I18N[CONFIG.defaultLang].names);
-  const loc = encodeURIComponent(CONFIG.venueName + ', ' + CONFIG.venueAddress);
+  const d = I18N[CONFIG.defaultLang];
+  const title = encodeURIComponent('Wedding — ' + d.names);
+  const loc = encodeURIComponent(d.venueName + ', ' + d.venueAddress);
   document.getElementById('calendar-link').href =
     `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${fmt(CONFIG.weddingDateISO)}/${fmt(CONFIG.weddingEndISO)}&location=${loc}`;
 })();
@@ -737,23 +712,6 @@ const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
 }, { threshold:.12 });
 document.querySelectorAll('.fade').forEach(el => io.observe(el));
-
-/* ── RSVP ── */
-const form = document.getElementById('rsvp-form');
-form.addEventListener('submit', async e => {
-  e.preventDefault();
-  if (CONFIG.rsvpAction){
-    try {
-      await fetch(CONFIG.rsvpAction, {
-        method:'POST',
-        body:new FormData(form),
-        headers:{ Accept:'application/json' }
-      });
-    } catch(_) {}
-  }
-  form.style.display = 'none';
-  document.getElementById('rsvp-thanks').style.display = 'block';
-});
 
 render();
 </script>
