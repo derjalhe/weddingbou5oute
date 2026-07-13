@@ -94,16 +94,14 @@ html[dir="rtl"] #lang-toggle{right:auto;left:14px}
 
 /* ═══════════════════ ENVELOPE ═══════════════════ */
 #envelope{
-  position:fixed;inset:0;z-index:100;
-  max-width:480px;margin:0 auto;
+  position:relative;
+  width:100%;min-height:100vh;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
   background:var(--ivory);
-  transition:opacity 1s ease .9s, visibility 0s linear 1.9s;
   perspective:1400px;
   overflow:hidden;
   padding:30px 20px;
 }
-body.opened #envelope{opacity:0;visibility:hidden}
 
 .env-water{
   position:absolute;top:50%;left:50%;z-index:0;pointer-events:none;
@@ -775,16 +773,21 @@ function render(){
 document.querySelectorAll('#lang-toggle button').forEach(b =>
   b.addEventListener('click', () => { lang = b.dataset.lang; render(); }));
 
-/* envelope opening: seal → flap opens → letter with the live countdown slides out → tap continue to enter the site */
+/* envelope opening: seal → flap opens → letter with the live countdown slides out → scroll down (or tap continue) to enter the site */
 const seal = document.getElementById('seal');
 seal.addEventListener('click', () => {
   document.body.classList.add('opening');
   setTimeout(() => document.body.classList.add('letter-open'), 900);
 }, { once:true });
 
-document.getElementById('continue-btn').addEventListener('click', () => {
+function dismissEnvelope(scrollDown){
   document.body.classList.add('opened');
-}, { once:true });
+  if (scrollDown) window.scrollTo({ top: window.innerHeight, behavior:'smooth' });
+}
+document.getElementById('continue-btn').addEventListener('click', () => dismissEnvelope(true), { once:true });
+['wheel','touchmove'].forEach(evt => window.addEventListener(evt, () => {
+  if (document.body.classList.contains('letter-open') && !document.body.classList.contains('opened')) dismissEnvelope(false);
+}, { passive:true }));
 
 /* countdown */
 const target = new Date(CONFIG.weddingDateISO).getTime();
