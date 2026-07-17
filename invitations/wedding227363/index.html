@@ -521,8 +521,8 @@ const CONFIG = {
   heroImageUrl: "",                       // e.g. "https://i.imgur.com/xxxx.jpg"
 
   // ── DATE (for the live countdown + calendar button) ──
-  weddingDateISO: "2026-08-08T20:00:00",
-  weddingEndISO:  "2026-08-09T02:00:00",
+  weddingDateISO: "2026-08-08T23:00:00",
+  weddingEndISO:  "2026-08-09T04:00:00",
 
   // ── VENUE ── (display name/address are per-language in I18N below; this is only used to locate the map pin)
   // built from the venue name/address below (no API key needed). For a nicer embed later:
@@ -536,9 +536,9 @@ const CONFIG = {
 /* ── ALL TEXT, IN 3 LANGUAGES ─────────────────────────────────── */
 const I18N = {
   fr: {
-    names: "Abdellahi & Iman",
+    namesParts: ["Abdellahi", "&", "Iman"],
     subtitle: "Nous nous marions",
-    dateText: "Vendredi 8 août 2026",
+    dateText: "Vendredi 8 août 2026 à 23h00",
     cd: ["Jours","Heures","Minutes","Secondes"],
     invitePoem: [
       "Qu'Allah les bénisse tous deux et les réunisse dans le bien et la joie.",
@@ -560,9 +560,9 @@ const I18N = {
     footer: "Avec tout notre amour"
   },
   en: {
-    names: "Abdellahi & Iman",
+    namesParts: ["Abdellahi", "&", "Iman"],
     subtitle: "We are getting married",
-    dateText: "Friday, August 8, 2026",
+    dateText: "Friday, August 8, 2026 at 23h00",
     cd: ["Days","Hours","Minutes","Seconds"],
     invitePoem: [
       "O Allah, bless them both and unite them in goodness and joy.",
@@ -584,9 +584,9 @@ const I18N = {
     footer: "With all our love"
   },
   ar: {
-    names: "عبد الله & إيمان",
+    namesParts: ["عبد الله", "&", "إيمان"],
     subtitle: "زواج",
-    dateText: "الجمعة 8 أغسطس 2026",
+    dateText: "الجمعة 8 أغسطس 2026 الساعة 23:00",
     cd: ["يوم","ساعة","دقيقة","ثانية"],
     invitePoem: [
       "اللهم بارك لهما وعليهما واجمع بينهما بالخير و المسره",
@@ -622,12 +622,17 @@ function render(){
     if (t[el.dataset.i18n] !== undefined) el.textContent = t[el.dataset.i18n];
   });
   document.querySelectorAll('[data-cd]').forEach(el => el.textContent = t.cd[+el.dataset.cd]);
-  document.getElementById('hero-names').textContent = t.names;
-  document.getElementById('footer-names').textContent = t.names;
+  
+  // hero names with line breaks
+  if (t.namesParts) {
+    document.getElementById('hero-names').innerHTML = t.namesParts.map(part => `<span style="display:block">${part}</span>`).join('');
+    const plainNames = `${t.namesParts[0]} & ${t.namesParts[2]}`;
+    document.getElementById('footer-names').textContent = plainNames;
+    document.getElementById('invite-couple').textContent = plainNames;
+  }
 
   // invitation poem
   document.getElementById('invite-poem').innerHTML = t.invitePoem.map(line => `<p>${line}</p>`).join('');
-  document.getElementById('invite-couple').textContent = t.names;
   document.getElementById('invite-closing').innerHTML = t.inviteClosing.map(line => `<p>${line}</p>`).join('');
 
   // wedding date
